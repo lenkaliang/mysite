@@ -14,7 +14,15 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from mysite.views import hello, my_homepage_view, current_datetime, hours_ahead, ordering_notice
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^hello/$', hello),
+    url(r'^$', my_homepage_view),     # ^$ matches empty
+    url(r'^time/$', current_datetime),
+    #url(r'^time/plus/\d+/$', hours_ahead), d here is used to match any digit, with '+' is to match any number of digit
+    url(r'^time/plus/(\d{1,2})/$', hours_ahead),  # d{1,2} means the digit you pass in the url can be either one digit or two digits
+    url(r'^ordering_notice/$', ordering_notice),
+
 ]
